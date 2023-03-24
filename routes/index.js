@@ -10,7 +10,7 @@ router.get("/", async function (req, res, next) {
    (SELECT * FROM images WHERE main=1) AS b ON a.id = b.blog_id`
    let params = []
    if (req.query.search){
-     query = query ` WHERE a.title LIKE ?`
+     query = query + ` WHERE a.title LIKE ?`
      params = [`%${req.query.search}%`]
    }
    const [rows, fields] = await pool.query(query, params);
