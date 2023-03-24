@@ -10,8 +10,8 @@ router.get('/:blogId/comments', function(req, res, next){
 router.post('/:blogId/comments', async function(req, res, next){
     try{
     const [id] = await pool.query("select max(id)+1`nextId` from comments")
-    const [rows, fields] = await pool.query("INSERT INTO comments (blog_id, comment) VALUES (?, ?);", [
-        req.params.blogId, req.body.comment
+    const [rows, fields] = await pool.query("INSERT INTO comments (blog_id, comment, comments.like) VALUES (?, ?, ?);", [
+        req.params.blogId, req.body.comment, req.body.like
     ]);
     // return json ของรายการ blogs
     return res.json({message:"A new comment is added (ID: " +id[0].nextId + ')'});
