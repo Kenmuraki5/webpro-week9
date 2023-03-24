@@ -50,6 +50,7 @@ router.get("/blogs/search", async function (req, res, next) {
 });
 
 // For inserting new blog
+// router.get("/create", async function (req, res, next) {
 router.post("/create", async function (req, res, next) {
   // Your code here
   try{
@@ -58,6 +59,7 @@ router.post("/create", async function (req, res, next) {
       "Title","hello"
     ]);
     // return json ของรายการ blogs
+    // return res.redirect("/")
     return res.json("create success");
 
   } catch (err) {
